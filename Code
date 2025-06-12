@@ -1,0 +1,34 @@
+import random
+import math
+
+# Taking inputs from the user
+lower = int(input("Enter Lower bound: "))
+upper = int(input("Enter Upper bound: "))
+
+# Generating random number between the lower and upper bounds
+x = random.randint(lower, upper)
+
+# Display the number of chances allowed (based on binary search logic)
+max_guesses = round(math.log(upper - lower + 1, 2))
+print(f"\n\tYou've only {max_guesses} chances to guess the integer!\n")
+
+# Initialize the number of guesses
+count = 0
+
+# Game loop
+while count < max_guesses:
+    count += 1
+    guess = int(input(f"Guess #{count}: "))
+
+    if guess == x:
+        print(f"\nCongratulations! You guessed the number in {count} tries.")
+        break
+    elif guess < x:
+        print("Too small!")
+    else:
+        print("Too big!")
+
+# If the user fails to guess in given attempts
+if count >= max_guesses and guess != x:
+    print(f"\nThe number was {x}.")
+    print("\tBetter luck next time!")
